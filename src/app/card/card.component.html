@@ -1,0 +1,11 @@
+<div class="card">
+  <img class="card-img-top" [src]="myUser" alt="Title" />
+  <div class="card-body">
+    <h4 class="card-title">{{ log }}</h4>
+    <div class="card-text">
+      <a class="btn btn-primary" [href]="giturl"> read more... </a>
+    </div>
+    <button class="btn btn-danger" (click)="removeUser(userId)">delete</button>
+    <a class="btn btn-success" [routerLink]="['/github', log]">view user</a>
+  </div>
+</div>

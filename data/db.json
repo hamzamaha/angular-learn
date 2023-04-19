@@ -1,0 +1,40 @@
+{
+  "articles": [
+    {
+      "title": "learn how to reactjs",
+      "content": "learn redux with react js",
+      "id": 1
+    },
+    {
+      "title": "learn how to angular",
+      "content": "this content to learn angular",
+      "id": 2
+    },
+    {
+      "title": "learn HTML",
+      "content": "this content is for this article to learn HTML",
+      "id": 3
+    },
+    {
+      "title": "learn CSS",
+      "content": "this content is for this article to learn CSS33",
+      "id": 4
+    },
+    {
+      "title": "tailwind",
+      "content": "tailwind css is a frame work for css",
+      "id": 5
+    },
+    {
+      "title": "php ",
+      "content": "this is how to lean php",
+      "id": 7
+    },
+    {
+      "title": "gggggggggg",
+      "content": "ggggggggggggg",
+      "id": 8
+    }
+  ],
+  "categories": []
+}

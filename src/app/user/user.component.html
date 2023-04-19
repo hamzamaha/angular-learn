@@ -1,0 +1,129 @@
+<section id="discover">
+  <div class="container py-5 bg-transparent text-center w-100 mb-5"></div>
+
+  <div
+    class="container position-relative py-6"
+    style="
+      background: radial-gradient(
+        116.18% 118% at 50% 100%,
+        rgba(99, 102, 241, 0.1) 0%,
+        rgba(218, 70, 239, 0.05) 41.83%,
+        rgba(241, 244, 253, 0.07) 82.52%
+      );
+    "
+  >
+    <div
+      class="lc-block position-absolute start-0 top-0 mt-xl-n6 mt-n6 d-none d-xl-block ms-xl-n6"
+    >
+      <img
+        class="ratio img-fluid rounded-3"
+        style="max-width: 512px"
+        [src]="myUser.avatar_url"
+        width="1080"
+        height="1080"
+        alt="Photo by Li Zhang"
+        loading="lazy"
+      />
+    </div>
+
+    <div class="row justify-content-xl-start justify-content-center">
+      <div class="col-10 d-block d-xl-none mt-n8 mb-4">
+        <img
+          class="ratio img-fluid"
+          style="max-height: 700px"
+          src="https://images.unsplash.com/photo-1629729802306-2c196af7eef5?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;ixid=MnwzNzg0fDB8MXxzZWFyY2h8NDB8fHB1cnBsZXxlbnwwfDJ8fHwxNjQ1Nzk3Nzgy&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1080&amp;h=1080"
+          width="1080"
+          height="1080"
+          alt="Photo by Li Zhang"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="col-10 col-xl-5 offset-xl-5 mb-5">
+        <div class="lc-block text-center text-xl-start">
+          <div editable="rich">
+            <h2 class="fw-bold display-5">{{ myUser.login }}</h2>
+
+            <p class="lead">
+              {{ myUser.name }}
+            </p>
+          </div>
+        </div>
+        <!-- /lc-block -->
+      </div>
+    </div>
+    <div class="row px-3 px-xl-0 col-xl-6 offset-xl-5">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a
+            class="nav-link active"
+            data-bs-toggle="tab"
+            href="#home"
+            aria-selected="true"
+            role="tab"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item" role="presentation">
+          <a
+            class="nav-link"
+            data-bs-toggle="tab"
+            href="#profile"
+            aria-selected="false"
+            role="tab"
+            tabindex="-1"
+            >Repository</a
+          >
+        </li>
+        <li class="nav-item" role="presentation">
+          <a
+            class="nav-link"
+            data-bs-toggle="tab"
+            href="#followers"
+            aria-selected="false"
+            role="tab"
+            tabindex="-1"
+            >Followers</a
+          >
+        </li>
+      </ul>
+      <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade active show" id="home" role="tabpanel">
+          <p>
+            Raw denim you probably haven't heard of them jean shorts Austin.
+            Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache
+            cliche tempor, williamsburg carles vegan helvetica. Reprehenderit
+            butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi,
+            qui irure terry richardson ex squid. Aliquip placeat salvia cillum
+            iphone. Seitan aliquip quis cardigan american apparel, butcher
+            voluptate nisi qui.
+          </p>
+        </div>
+        <div class="rep tab-pane fade" id="profile" role="tabpanel">
+          <ul class="list-group">
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+              *ngFor="let item of repo"
+            >
+              {{ item.name }}
+              <a class="btn btn-primary" [href]="item.html_url">show repo</a>
+            </li>
+          </ul>
+        </div>
+        <div class="tab-pane fade rep" id="followers" role="tabpanel">
+          <ul class="list-group">
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+              *ngFor="let item of followers"
+            >
+              {{ item.login }}
+              <a class="btn btn-primary" [href]="item.html_url"
+                >show follower</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

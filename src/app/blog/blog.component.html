@@ -1,0 +1,187 @@
+<!-- <table class="table table-hover">
+  <tbody>
+    <tr class="table-active" *ngFor="let article of articles">
+      <td>{{ article.title }}</td>
+      <td>{{ article.content }}</td>
+      <td><button class="btn btn-success">edit</button></td>
+      <td><button class="btn btn-danger">delete</button></td>
+    </tr>
+  </tbody>
+</table> -->
+
+<div class="row my-3">
+  <div class="col-md-6">
+    <h1>List of articles</h1>
+  </div>
+  <div class="col-md-6" align="right">
+    <button class="btn btn-success" (click)="toggleForm()">
+      <i class="fa fa-plus"></i> add
+    </button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12" align="right">
+    <button class="btn btn-warning mx-1" (click)="switch(true)">
+      <i class="fa fa-list"></i>
+    </button>
+    <button class="btn btn-primary" (click)="switch(false)">
+      <i class="fa fa-th-list"></i>
+    </button>
+  </div>
+</div>
+
+<div class="row" *ngIf="showForm">
+  <div class="col-md-6 mx-auto">
+    <form #myForm="ngForm" (ngSubmit)="saveArticle(myForm)">
+      <div class="form-group">
+        <label for="exampleInputText" class="form-label mt-4">text</label>
+        <input
+          #myTitle="ngModel"
+          (keyup)="log(myTitle)"
+          required
+          minlength="4"
+          maxlength="10"
+          ngModel
+          type="text"
+          class="form-control"
+          id="exampleInputText"
+          aria-describedby="emailHelp"
+          name="title"
+        />
+        <span
+          class="text-danger"
+          *ngIf="myTitle.invalid && (myTitle.touched || myTitle.dirty)"
+        >
+          <div *ngIf="myTitle.errors?.['required']">this field is required</div>
+          <div *ngIf="myTitle.errors?.['minlength']">
+            this field must have more than
+            {{myTitle.errors?.['minlength']['actualLength']
+
+
+
+
+
+
+            }}/{{myTitle.errors?.['minlength']['requiredLength']}} caracters
+          </div>
+          <div *ngIf="myTitle.errors?.['maxlength']">
+            the max caracters is 10
+          </div>
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="exampleTextarea" class="form-label mt-2">content</label>
+        <textarea
+          #myContent="ngModel"
+          ngModel
+          required
+          minlength="10"
+          class="form-control"
+          id="exampleTextarea"
+          rows="3"
+          name="content"
+        ></textarea>
+        <span
+          class="text-danger"
+          *ngIf="myContent.invalid && (myContent.touched || myContent.dirty)"
+        >
+          <div *ngIf="myContent.errors?.['required']">
+            this field is required
+          </div>
+          <div *ngIf="myContent.errors?.['minlength']">
+            this field must have more than
+            {{myContent.errors?.['minlength']['actualLength']
+
+
+
+
+
+
+            }}/{{myContent.errors?.['minlength']['requiredLength']}} caracters
+          </div>
+          <div *ngIf="myTitle.errors?.['maxlength']">
+            the max caracters is 10
+          </div>
+        </span>
+      </div>
+
+      <div class="d-grid">
+        <ng-container *ngIf="!editable">
+          <button
+            type="submit"
+            class="btn btn-primary my-1"
+            [disabled]="!myForm.valid"
+          >
+            <i class="fa fa-paper-plane" aria-hidden="true"></i> Submit
+          </button>
+        </ng-container>
+
+        <ng-container *ngIf="editable">
+          <button
+            type="submit"
+            class="btn btn-warning my-1"
+            (click)="updateArticle()"
+          >
+            <i class="fa fa-pencil" aria-hidden="true"></i> save
+          </button>
+        </ng-container>
+      </div>
+    </form>
+  </div>
+</div>
+
+<ng-container *ngIf="list; then myList; else myCard"></ng-container>
+
+<ng-template #myList>
+  <div class="row mt-4" *ngIf="list">
+    <div class="col-md-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>title</th>
+            <th>content</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let article of articles">
+            <td>
+              <a [routerLink]="['/blog', article.id]">{{ article.id }}</a>
+            </td>
+            <td>{{ article.title }}</td>
+            <td>{{ article.content }}</td>
+            <td class="text-right" align="right">
+              <button class="btn btn-primary" (click)="editArticle(article)">
+                <i class="fa fa-pencil"></i>
+              </button>
+              <button
+                class="btn btn-danger mx-1"
+                (click)="destroyArticle(article.id)"
+              >
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #myCard>
+  <div class="row mt-4">
+    <div class="col-md-4" *ngFor="let article of articles">
+      <div class="card my-2">
+        <div class="card-body">
+          <h4 class="card-title">{{ article.title }}</h4>
+          <p class="card-text">{{ article.content }}</p>
+          <a class="btn btn-primary" [routerLink]="['/blog', article.id]"
+            >read more</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

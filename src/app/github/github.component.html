@@ -1,0 +1,32 @@
+<h1 class="my-5">List of users</h1>
+
+<div class="row">
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Recipient's username"
+      [(ngModel)]="search"
+    />
+    <button
+      class="btn btn-outline-secondary"
+      type="button"
+      id="button-addon2"
+      (click)="searchUser()"
+    >
+      Button
+    </button>
+  </div>
+  <div class="col-3 mb-3" *ngFor="let user of users">
+    <app-card
+      [my-User]="user.avatar_url"
+      [url]="user.html_url"
+      [login]="user.login"
+      [user-id]="user.id"
+      (deleteUser)="destroyUser($event)"
+    ></app-card>
+  </div>
+  <ng-container *ngIf="users.length == 0 || search != ''">
+    <h3>user Not found</h3>
+  </ng-container>
+</div>
